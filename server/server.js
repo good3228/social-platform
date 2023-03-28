@@ -12,6 +12,10 @@ import { fileURLToPath } from "url";
 import { register } from "./controllers/auth.js";
 import { createPosts } from "./controllers/posts.js";
 
+import User from "./models/User.js";
+import Post from "./models/Post.js";
+import { users, posts } from "./data/index.js";
+
 import authRoutes from "./routes/auth.js";
 import userRoute from "./routes/users.js";
 import postRoute from "./routes/posts.js";
@@ -61,6 +65,8 @@ mongoose
   })
   .then(() => {
     app.listen(PORT, () => console.log(`Server Port : ${PORT}`));
+    // User.insertMany(users);
+    // Post.insertMany(posts);
   })
   .catch((error) => {
     console.log(error);
