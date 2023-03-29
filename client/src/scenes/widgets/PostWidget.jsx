@@ -54,6 +54,7 @@ const PostWidget = ({
         name={name}
         subtitle={location}
         userPicturePath={userPicturePath}
+        isMyself={postUserId === loggedInUserId}
       />
       <Typography color={main} sx={{ mt: "1rem" }}>
         {description}

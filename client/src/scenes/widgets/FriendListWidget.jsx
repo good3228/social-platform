@@ -5,10 +5,12 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setFriends } from "../../state";
 
-const FriendListWidget = ({ userId }) => {
+const FriendListWidget = ({ userId}) => {
   const dispatch = useDispatch();
   const { palette } = useTheme();
   const token = useSelector((state) => state.token);
+  const loggedInUser = useSelector((state) => state.user);
+
   const friends = useSelector((state) => state.user.friends);
 
   const getFriends = async () => {
@@ -45,6 +47,7 @@ const FriendListWidget = ({ userId }) => {
             name={`${friend.firstName} ${friend.lastName}`}
             subtitle={friend.occupation}
             userPicturePath={friend.picturePath}
+            isMyself={friend._id === loggedInUser._id}
           />
         ))}
       </Box>
