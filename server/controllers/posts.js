@@ -30,7 +30,7 @@ export const createPosts = async (req, res) => {
 // GET
 export const getFeedPosts = async (req, res) => {
   try {
-    const post = await Post.find();
+    const post = await Post.find().sort({ createdAt: -1 });
     res.status(200).json(post);
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -39,7 +39,7 @@ export const getFeedPosts = async (req, res) => {
 
 export const getUserPosts = async (req, res) => {
   try {
-    const  userId  = req.params['id'];
+    const userId = req.params["id"];
     const post = await Post.find({ userId });
     res.status(200).json(post);
   } catch (error) {
@@ -59,7 +59,7 @@ export const likePost = async (req, res) => {
     } else {
       post.likes.set(userId, true);
     }
- 
+
     const updatePost = await Post.findById(
       id,
       { likes: post.likes },
